@@ -19,12 +19,6 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
--- Combat Tab
-local CombatTab = Window:CreateTab("Main", "skull")
-
--- Weapon Label
-local weaponLabel = CombatTab:CreateLabel("🔫 Current Weapon: Loading...")
-
 -- Get equipped weapon name
 local function getEquippedWeaponName()
     local model = workspace:FindFirstChild("Players"):FindFirstChild(player.Name)
@@ -38,6 +32,12 @@ local function getEquippedWeaponName()
     return "M1911"
 end
 
+-- Combat Tab
+local CombatTab = Window:CreateTab("Main", "skull")
+
+-- Weapon Label
+local weaponLabel = CombatTab:CreateLabel("🔫 Current Weapon: Loading...")
+
 -- Update label
 task.spawn(function()
     while true do
@@ -45,95 +45,6 @@ task.spawn(function()
         task.wait(0.1)
     end
 end)
-
-CombatTab:CreateButton({
-    Name = "Delete All Doors",
-    Callback = function()
-        local doorsFolder = workspace:FindFirstChild("Doors")
-        if doorsFolder then
-            for _, group in pairs(doorsFolder:GetChildren()) do
-                if group:IsA("Folder") or group:IsA("Model") then
-                    group:Destroy()
-                end
-            end
-        end
-    end
-})
-
-CombatTab:CreateButton({
-    Name = "Activate All Perks",
-    Callback = function()
-        local vars = player:FindFirstChild("Variables")
-        if not vars then return end
-
-        local perks = {
-            "Bandoiler_Perk",
-            "DoubleUp_Perk",
-            "Haste_Perk",
-            "Tank_Perk"
-        }
-
-        for _, perk in ipairs(perks) do
-            if vars:GetAttribute(perk) ~= nil then
-                vars:SetAttribute(perk, true)
-            end
-        end
-    end
-})
-
-CombatTab:CreateButton({
-    Name = "Enhance Primary & Secondary",
-    Callback = function()
-        local vars = player:FindFirstChild("Variables")
-        if not vars then return end
-
-        local enchants = {
-            "Primary_Enhanced",
-            "Secondary_Enhanced"
-        }
-
-        for _, attr in ipairs(enchants) do
-            if vars:GetAttribute(attr) ~= nil then
-                vars:SetAttribute(attr, true)
-            end
-        end
-    end
-})
-
-CombatTab:CreateButton({
-    Name = "Set Mag to 1 Million",
-    Callback = function()
-        local vars = player:FindFirstChild("Variables")
-        if not vars then return end
-
-        local ammoAttributes = {
-            "Primary_Mag",
-            "Secondary_Mag"
-        }
-
-        for _, attr in ipairs(ammoAttributes) do
-            if vars:GetAttribute(attr) ~= nil then
-                vars:SetAttribute(attr, 100000000)
-            end
-        end
-    end
-})
-
-
-
-CombatTab:CreateButton({
-    Name = "Set All Guns to 'immortal'",
-    Callback = function()
-        local gunData = player:FindFirstChild("GunData")
-        if not gunData then return end
-
-        for _, value in ipairs(gunData:GetChildren()) do
-            if value:IsA("StringValue") then
-                value.Value = "immortal"
-            end
-        end
-    end
-})
 
 -- Auto Headshots
 local autoKill = false
@@ -185,6 +96,96 @@ CombatTab:CreateToggle({
                     task.wait(1)
                 end
             end)
+        end
+    end
+})
+
+-- Misc Tab
+local MiscTab = Window:CreateTab("Misc", "skull")
+
+MiscTab:CreateButton({
+    Name = "Delete All Doors",
+    Callback = function()
+        local doorsFolder = workspace:FindFirstChild("Doors")
+        if doorsFolder then
+            for _, group in pairs(doorsFolder:GetChildren()) do
+                if group:IsA("Folder") or group:IsA("Model") then
+                    group:Destroy()
+                end
+            end
+        end
+    end
+})
+
+MiscTab:CreateButton({
+    Name = "Activate All Perks",
+    Callback = function()
+        local vars = player:FindFirstChild("Variables")
+        if not vars then return end
+
+        local perks = {
+            "Bandoiler_Perk",
+            "DoubleUp_Perk",
+            "Haste_Perk",
+            "Tank_Perk"
+        }
+
+        for _, perk in ipairs(perks) do
+            if vars:GetAttribute(perk) ~= nil then
+                vars:SetAttribute(perk, true)
+            end
+        end
+    end
+})
+
+MiscTab:CreateButton({
+    Name = "Enhance Primary & Secondary",
+    Callback = function()
+        local vars = player:FindFirstChild("Variables")
+        if not vars then return end
+
+        local enchants = {
+            "Primary_Enhanced",
+            "Secondary_Enhanced"
+        }
+
+        for _, attr in ipairs(enchants) do
+            if vars:GetAttribute(attr) ~= nil then
+                vars:SetAttribute(attr, true)
+            end
+        end
+    end
+})
+
+MiscTab:CreateButton({
+    Name = "Set Mag to 1 Million",
+    Callback = function()
+        local vars = player:FindFirstChild("Variables")
+        if not vars then return end
+
+        local ammoAttributes = {
+            "Primary_Mag",
+            "Secondary_Mag"
+        }
+
+        for _, attr in ipairs(ammoAttributes) do
+            if vars:GetAttribute(attr) ~= nil then
+                vars:SetAttribute(attr, 100000000)
+            end
+        end
+    end
+})
+
+MiscTab:CreateButton({
+    Name = "Set All Guns to 'immortal'",
+    Callback = function()
+        local gunData = player:FindFirstChild("GunData")
+        if not gunData then return end
+
+        for _, value in ipairs(gunData:GetChildren()) do
+            if value:IsA("StringValue") then
+                value.Value = "immortal"
+            end
         end
     end
 })
