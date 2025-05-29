@@ -223,7 +223,7 @@ end
 createCrateToggle("Pet", "AutoOpenPetCrate", "OpenPetCrate")
 createCrateToggle("Gun", "AutoOpenGunCrate", "OpenGunCrate")
 createCrateToggle("Outfit", "AutoOpenOutfitCrate", "OpenOutfitCrate", "Random")
-createCrateToggle("Camo", "AutoOpenCamoCrate", "PurchaseCamoCrate", 1)
+createCrateToggle("Camo", "AutoOpenCamoCrate", "OpenCamoCrate", "Random")
 
 -- Load config
 Rayfield:LoadConfiguration()
