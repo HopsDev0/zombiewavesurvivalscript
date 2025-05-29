@@ -191,7 +191,7 @@ MiscTab:CreateButton({
 })
 
 -- Crate Tab
-local crateTab = Window:CreateTab("Crates", "crate")
+local crateTab = Window:CreateTab("Crates", "Skull")
 
 -- Auto Open Crates
 local function createCrateToggle(name, flag, remoteName, invokeArg)
