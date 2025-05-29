@@ -35,6 +35,14 @@ end
 -- Combat Tab
 local CombatTab = Window:CreateTab("Main", "skull")
 
+CombatTab:CreateButton({
+    Name = "🔗 Join our Discord",
+    Callback = function()
+        setclipboard("https://discord.gg/DEININVITELINK")
+        messagebox("🔗 Link copied to clipboard!\nPaste in your browser to join.", "Discord", 0)
+    end
+})
+
 -- Weapon Label
 local weaponLabel = CombatTab:CreateLabel("🔫 Current Weapon: Loading...")
 
