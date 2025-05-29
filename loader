@@ -189,10 +189,13 @@ CombatTab:CreateToggle({
     end
 })
 
+-- Crate Tab
+local crateTab = Window:CreateTab("Crates", "crate")
+
 -- Auto Open Crates
 local function createCrateToggle(name, flag, remoteName, invokeArg)
     local loop = false
-    CombatTab:CreateToggle({
+    crateTab:CreateToggle({
         Name = "Auto Open " .. name .. " Crates",
         CurrentValue = false,
         Flag = flag,
